@@ -36,7 +36,7 @@ export function MovieList() {
           deleteMovie(mve.id)
         }}>
           <DeleteIcon />
-        </IconButton>} editMovieButton={<IconButton aria-label="show Movie Description" color="primary" onClick={() =>history.push("/movies/edit/" + mve.id)}>
+        </IconButton>} editMovieButton={<IconButton aria-label="Edit Movie" color="primary" onClick={() =>history.push("/movies/edit/" + mve.id)}>
           <EditIcon />
         </IconButton>} name={mve.name} id={mve.id} image={mve.movie_pic} movie_desc={mve.desc} />
       </div>)}

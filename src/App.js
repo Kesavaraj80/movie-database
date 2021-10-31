@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
+import { About } from './About';
 
 
 
@@ -59,7 +60,7 @@ function App() {
               <MovieDetails />
             </Route>
             <Route exact path="/about">
-              <p>About Page</p>
+              <About />
             </Route>
           </Switch>
         </section>
@@ -69,3 +70,5 @@ function App() {
   );
 }
 export default App;
+
+

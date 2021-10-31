@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useState } from "react"
+// import { useState } from "react"
 import { useHistory } from "react-router-dom";
 import './App.css';
 import { useFormik } from "formik";
@@ -66,7 +66,7 @@ export function AddMovie({ setAddmovie, add_movie }) {
       },
       validationSchema: aboutValidationSchema,
       onSubmit: (values) => {
-        // createMovie(values);
+        createMovie(values);
       }
     });
 

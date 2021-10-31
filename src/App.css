@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
 .App{
     display: grid;
     justify-items: center;
@@ -100,4 +100,9 @@ li>a{
     margin-top:20px;
     display: flex;
     justify-content:center;
+}
+
+.movie_rating{
+    font-size:1rem;
+    font-family: 'Zen Antique Soft', serif;
 }

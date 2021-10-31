@@ -51,7 +51,8 @@ const aboutValidationSchema = yup.object({
   name: yup.string().min(3, "Need bigger Name"),
   movie_pic: yup.string().required("Without Poster it will not look nice"),
   desc: yup.string().min(20, "Type More Please"),
-  trailer: yup.string().required("Hey Buddy you forget to add trailer")
+  trailer: yup.string().required("Hey Buddy you forget to add trailer"),
+  rating:yup.string().required("Without Rating you don't know how the movie was...")
 })
 export function AddMovie({ setAddmovie, add_movie }) {
   const history = useHistory();
@@ -62,7 +63,8 @@ export function AddMovie({ setAddmovie, add_movie }) {
         name: "",
         movie_pic: "",
         desc: "",
-        trailer: ""
+        trailer: "",
+        rating:""
       },
       validationSchema: aboutValidationSchema,
       onSubmit: (values) => {
@@ -136,6 +138,19 @@ export function AddMovie({ setAddmovie, add_movie }) {
           onBlur={handleBlur}
           error={errors.trailer}
           helperText={errors.trailer}
+        />
+
+        <TextField
+          id="rating"
+          name="rating"
+          label="Enter Movie rating"
+          value={values.rating}
+          variant="outlined"
+          margin="normal"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={errors.rating}
+          helperText={errors.rating}
         />
 
         <Button

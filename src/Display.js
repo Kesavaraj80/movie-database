@@ -8,7 +8,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import './App.css';
 
 
-export function Display({ name, image, movie_desc, deleteMoviebutton, id, editMovieButton }) {
+export function Display({ name, image, movie_desc, deleteMoviebutton, id, editMovieButton, rating }) {
   const [show, setShow] = useState(false);
   const history = useHistory();
   return (
@@ -27,11 +27,13 @@ export function Display({ name, image, movie_desc, deleteMoviebutton, id, editMo
         <IconButton aria-label="show description" color="primary" onClick={() => setShow(!show)}>
           {show ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         </IconButton>
+        <p className="movie_rating">{rating}
+        </p>
       </h1>
       <div className="Desc_con">
         {show ? <p className="Movie_Desc">{movie_desc}</p> : ""}
       </div>
       <Counter dmoviebutton={deleteMoviebutton} />
-    </div>
+    </div >
   );
 }

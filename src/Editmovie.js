@@ -21,7 +21,7 @@ import './App.css';
 //         setTrailer(mve.trailer)
 //       });
 //   };
-//   useEffect(getMovie);
+//   useEffect(getMovie,[index]);
 //   const [edit_name, setMoviename] = useState("");
 //   const [edit_movie_pic, setMovieimage] = useState("")
 //   const [edit_desc, setMovidesc] = useState("");
@@ -33,7 +33,7 @@ import './App.css';
 //       body: JSON.stringify(editedMovie),
 //       headers: { 'Content-type': 'application/json' }
 //     })
-//       .then(data => data.json())
+//       // .then(data => data.json())
 //       .then(data => history.push("/movies"))
 //   };
 
@@ -84,12 +84,12 @@ import './App.css';
 //         variant="outlined" 
 //         margin="normal" 
 //         value={edit_trailer} 
-//         onChange={event => setMovidesc(event.target.value)} 
+//         onChange={event => setTrailer(event.target.value)} 
 //         />
 
 //         <Button variant="contained" size="large" onClick={() => {
 //           editMovie();
-//         }}>Add Movie</Button>
+//         }}>Update Movie</Button>
 //       </div>
 //     </div>
 //   );
@@ -104,17 +104,17 @@ export function Editmovie() {
 
 
   const getMovie = () => {
-    fetch("https://6173de34110a740017223187.mockapi.io/movies/" + index)
+    fetch("https://movies-database-kesavan.herokuapp.com/movies/" + index)
       .then(data => data.json())
       .then(mve => {
         setMoviename(mve.name)
-        setMovieimage(mve.movie_pic)
-        setMovidesc(mve.desc)
+        setMovieimage(mve.poster)
+        setMovidesc(mve.summary)
         setTrailer(mve.trailer)
         setRating(mve.rating)
       });
   };
-  useEffect(getMovie);
+  useEffect(getMovie,[index]);
 
   const [edit_name, setMoviename] = useState("");
   const [edit_movie_pic, setMovieimage] = useState("")
@@ -123,20 +123,23 @@ export function Editmovie() {
   const [edit_rating, setRating] = useState("");
 
   const updateMovie = (editedMovie) => {
-    fetch("https://6173de34110a740017223187.mockapi.io/movies/" + index, {
+    console.log("update movie function called");
+    fetch("https://movies-database-kesavan.herokuapp.com/movies/" + index, {
       method: "PUT",
       body: JSON.stringify(editedMovie),
-      headers: { 'Content-type': 'application/json' }
+      headers: { 'Content-type': 'application/json',
+       }
     })
       .then(data => data.json())
       .then(data => history.push("/movies"))
   };
 
   const editMovie = () => {
+    console.log("edit movie clicked")
     const editedMovie = {
       name: edit_name,
-      movie_pic: edit_movie_pic,
-      desc: edit_desc,
+      poster: edit_movie_pic,
+      summary: edit_desc,
       trailer: edit_trailer,
       rating:edit_rating
     };
@@ -180,21 +183,21 @@ export function Editmovie() {
           variant="outlined"
           margin="normal"
           value={edit_trailer}
-          onChange={event => setMovidesc(event.target.value)}
+          onChange={event => setTrailer(event.target.value)}
         />
 
         <TextField
           id="outlined-basic"
-          label="Enter Movie Trailer"
+          label="Enter Movie Rating"
           variant="outlined"
           margin="normal"
           value={edit_rating}
-          onChange={event => setMovidesc(event.target.value)}
+          onChange={event => setRating(event.target.value)}
         />
 
         <Button variant="contained" size="large" onClick={() => {
           editMovie();
-        }}>Add Movie</Button>
+        }}>Edit Movie</Button>
       </div>
     </div>
   );

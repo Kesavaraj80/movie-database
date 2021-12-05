@@ -11,7 +11,7 @@ export function MovieDetails() {
   const [movie, setMovie] = useState({});
 
   const getMovie = () => {
-    fetch("https://6173de34110a740017223187.mockapi.io/movies/" + id)
+    fetch("https://movies-database-kesavan.herokuapp.com/movies/" + id)
       .then(data => data.json())
       .then(mve => setMovie(mve));
   };

@@ -12,7 +12,7 @@ export function MovieList() {
   const history = useHistory();
   
   const getMovies = () => {
-    fetch("https://6173de34110a740017223187.mockapi.io/movies", {
+    fetch("https://movies-database-kesavan.herokuapp.com/movies", {
       method: "GET"
     })
     .then(data => data.json())
@@ -22,7 +22,7 @@ export function MovieList() {
   useEffect(getMovies, []);
 
   const deleteMovie = (id) => {
-    fetch("https://6173de34110a740017223187.mockapi.io/movies/"+id, {
+    fetch("https://movies-database-kesavan.herokuapp.com/movies/"+id, {
       method: "DELETE"
     })
     .then(data => data.json())
@@ -33,12 +33,12 @@ export function MovieList() {
     <div className="MovieList_containner">
       {add_movie.map((mve, index) => <div key={index}>
         <Display deleteMoviebutton={<IconButton aria-label="delete" color="error" onClick={() => {
-          deleteMovie(mve.id)
+          deleteMovie(mve._id)
         }}>
           <DeleteIcon />
-        </IconButton>} editMovieButton={<IconButton aria-label="Edit Movie" color="primary" onClick={() =>history.push("/movies/edit/" + mve.id)}>
+        </IconButton>} editMovieButton={<IconButton aria-label="Edit Movie" color="primary" onClick={() =>history.push("/movies/edit/" + mve._id)}>
           <EditIcon />
-        </IconButton>} name={mve.name} id={mve.id} image={mve.movie_pic} movie_desc={mve.desc} rating={mve.rating}/>
+        </IconButton>} name={mve.name} id={mve._id} image={mve.poster} movie_desc={mve.summary} rating={mve.rating}/>
       </div>)}
     </div>
   </div>);

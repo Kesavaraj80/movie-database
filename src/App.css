@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
 .App{
     display: grid;
-    justify-items: center;
+    /* justify-items: center; */
     margin-top: 100px;
 }
 
@@ -19,9 +19,13 @@
 }
 /*  */
 .MovieList_containner{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    grid-column-gap:20px ;
+    grid-row-gap:20px ;
     
 }
 .add_movie_container{

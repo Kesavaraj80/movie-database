@@ -27,8 +27,8 @@ import * as yup from 'yup';
 //   const addMovie = () => {
 //     const newMovie = { 
 //       name: new_name, 
-//       movie_pic: new_movie_pic, 
-//       desc: new_desc, 
+//       poster: new_movie_pic, 
+//       summary: new_desc, 
 //       trailer: new_trailer };
 //       createMovie(newMovie)
 
@@ -49,10 +49,10 @@ import * as yup from 'yup';
 
 const aboutValidationSchema = yup.object({
   name: yup.string().min(3, "Need bigger Name 😁"),
-  movie_pic: yup.string().required("Without Poster it will not look nice 😉"),
-  desc: yup.string().min(20, "Type More Please 😅"),
+  poster: yup.string().required("Without Poster it will not look nice 😉"),
+  summary: yup.string().min(20, "Type More Please 😅"),
   trailer: yup.string().required("Hey Buddy you forget to add trailer😏"),
-  rating:yup.string().required("Without Rating you don't know how the movie was...😒")
+  rating:yup.number().min(0,"Enter More then 0").max(10,"Enter Rating less then 10")
 })
 export function AddMovie({ setAddmovie, add_movie }) {
   const history = useHistory();
@@ -61,8 +61,8 @@ export function AddMovie({ setAddmovie, add_movie }) {
     useFormik({
       initialValues: {
         name: "",
-        movie_pic: "",
-        desc: "",
+        poster: "",
+        summary: "",
         trailer: "",
         rating:""
       },
@@ -73,7 +73,7 @@ export function AddMovie({ setAddmovie, add_movie }) {
     });
 
   const createMovie = (newMovie) => {
-    fetch("https://6173de34110a740017223187.mockapi.io/movies", {
+    fetch("https://movies-database-kesavan.herokuapp.com/movies", {
       method: "POST",
       body: JSON.stringify(newMovie),
       headers: { 'Content-type': 'application/json' }
@@ -98,31 +98,31 @@ export function AddMovie({ setAddmovie, add_movie }) {
           helperText={errors.name}
         />
         <TextField
-          id="movie_pic"
-          name="movie_pic"
+          id="poster"
+          name="poster"
           label="Paste Movie Image URL"
-          value={values.movie_pic}
+          value={values.poster}
           variant="outlined"
           margin="normal"
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errors.movie_pic}
-          helperText={errors.movie_pic}
+          error={errors.poster}
+          helperText={errors.poster}
         />
 
 
 
         <TextField
-          id="desc"
-          name="desc"
+          id="summary"
+          name="summary"
           label="Enter Movie Description"
-          value={values.desc}
+          value={values.summary}
           variant="outlined"
           margin="normal"
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errors.desc && touched.desc}
-          helperText={errors.desc}
+          error={errors.summary && touched.summary}
+          helperText={errors.summary}
         />
 
 
